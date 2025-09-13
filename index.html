@@ -106,22 +106,19 @@
         // Get color based on days sober (WoW-inspired quality tiers)
         // Color progression:
         // 0 days: Poor (Gray)
-        // 1-6 days: Common (White) - First week
-        // 7-29 days: Uncommon (Green) - First month
-        // 30-89 days: Rare (Blue) - 1-3 months
-        // 90-179 days: Epic (Purple) - 3-6 months
-        // 180-364 days: Legendary (Orange) - 6 months to 1 year
-        // 365-729 days: Artifact (Light Gold) - 1-2 years
-        // 730+ days: Heirloom (Blizzard Blue) - 2+ years
+        // 1-7 days: Common (White) - First week
+        // 8-30 days: Uncommon (Green) - First month
+        // 31-90 days: Rare (Blue) - 1-3 months
+        // 91-180 days: Epic (Purple) - 3-6 months
+        // 181-364 days: Epic (Purple) - 6 months to 1 year
+        // 365+ days: Legendary (Orange) - 1 year+
         function getSobrietyColor(days) {
             if (days === 0) return '#9d9d9d'; // Poor (Gray)
-            else if (days <= 6) return '#ffffff'; // Common (White)
-            else if (days <= 29) return '#1eff00'; // Uncommon (Green)
-            else if (days <= 89) return '#0070dd'; // Rare (Blue)
-            else if (days <= 179) return '#a335ee'; // Epic (Purple)
-            else if (days <= 364) return '#ff8000'; // Legendary (Orange)
-            else if (days <= 729) return '#e6cc80'; // Artifact (Light Gold)
-            else return '#00ccff'; // Heirloom (Blizzard Blue) - 2+ years
+            else if (days <= 7) return '#ffffff'; // Common (White)
+            else if (days <= 30) return '#1eff00'; // Uncommon (Green)
+            else if (days <= 90) return '#0070dd'; // Rare (Blue)
+            else if (days <= 364) return '#a335ee'; // Epic (Purple)
+            else return '#ff8000'; // Legendary (Orange) - 1 year+
         }
         
         // Get current date in Eastern Time
