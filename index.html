@@ -158,8 +158,9 @@
         const goalsData = {
             "2025-09-13": {
                 "goals": [
-                    "create finalized front-end only demo for nextgenmed",
-                    "get up to speed on booker"
+                    "complete prd for nextgen demo v2",
+                    "get up to speed on booker",
+                    "figure out thank you gift"
                 ],
                 "success": false
             }
@@ -182,14 +183,20 @@
                 
                 // Today's goals within the goals section
                 if (hasToday) {
-                    const goalsString = goalsData[todayKey].goals.join(' and ');
+                    const goals = goalsData[todayKey].goals;
+                    const goalsString = goals.length > 2 
+                        ? goals.slice(0, -1).join(', ') + ', and ' + goals[goals.length - 1]
+                        : goals.join(' and ');
                     const checkmark = goalsData[todayKey].success ? ' ✓' : '';
                     goalsText += `\n<span style="line-height: 0.2;">today's goals: ${goalsString}${checkmark}</span>`;
                 }
                 
                 // Tomorrow's goals within the same goals section
                 if (hasTomorrow) {
-                    const goalsString = goalsData[tomorrowKey].goals.join(' and ');
+                    const goals = goalsData[tomorrowKey].goals;
+                    const goalsString = goals.length > 2 
+                        ? goals.slice(0, -1).join(', ') + ', and ' + goals[goals.length - 1]
+                        : goals.join(' and ');
                     goalsText += `\n<span style="line-height: 0.2;">tomorrow's goals: ${goalsString}</span>`;
                 }
                 
