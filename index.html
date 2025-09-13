@@ -103,6 +103,27 @@
     </div>
 
     <script>
+        // Get color based on days sober (WoW-inspired quality tiers)
+        // Color progression:
+        // 0 days: Poor (Gray)
+        // 1-6 days: Common (White) - First week
+        // 7-29 days: Uncommon (Green) - First month
+        // 30-89 days: Rare (Blue) - 1-3 months
+        // 90-179 days: Epic (Purple) - 3-6 months
+        // 180-364 days: Legendary (Orange) - 6 months to 1 year
+        // 365-729 days: Artifact (Light Gold) - 1-2 years
+        // 730+ days: Heirloom (Blizzard Blue) - 2+ years
+        function getSobrietyColor(days) {
+            if (days === 0) return '#9d9d9d'; // Poor (Gray)
+            else if (days <= 6) return '#ffffff'; // Common (White)
+            else if (days <= 29) return '#1eff00'; // Uncommon (Green)
+            else if (days <= 89) return '#0070dd'; // Rare (Blue)
+            else if (days <= 179) return '#a335ee'; // Epic (Purple)
+            else if (days <= 364) return '#ff8000'; // Legendary (Orange)
+            else if (days <= 729) return '#e6cc80'; // Artifact (Light Gold)
+            else return '#00ccff'; // Heirloom (Blizzard Blue) - 2+ years
+        }
+        
         // Get current date in Eastern Time
         function getEasternDate() {
             const now = new Date();
@@ -194,7 +215,9 @@
         function initializeText() {
             const { displayText: dateText } = getEasternDate();
             const goalsText = getGoalsText();
-            fullText = `hey i'm sam and i'm building the future i want to see. you can email me at sam@artoflifeproject.co\n\n${dateText}\n\n<span class="sober-link">sobriety</span>\n<span style="line-height: 0.2;"><span class="sober-link">consecutive days sober: 0</span></span>${goalsText}`;
+            const soberDays = 0; // This would be dynamically loaded in a real app
+            const soberColor = getSobrietyColor(soberDays);
+            fullText = `hey i'm sam and i'm building the future i want to see. you can email me at sam@artoflifeproject.co\n\n${dateText}\n\n<span class="sober-link">sobriety</span>\n<span style="line-height: 0.2;"><span class="sober-link">consecutive days sober: <span style="color: ${soberColor}">${soberDays}</span></span></span>${goalsText}`;
             
             // Start typing after text is loaded
             setTimeout(typeWriter, 500);
