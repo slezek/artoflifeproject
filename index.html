@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>artoflifeproject.co</title>
     <style>
-        * {
+        * {bk
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -221,7 +221,9 @@
             const goalsText = getGoalsText();
             const soberDays = 0; // This would be dynamically loaded in a real app
             const soberColor = getSobrietyColor(soberDays);
-            fullText = `hey i'm sam and i'm building the future i want to see. you can email me at sam@artoflifeproject.co\n\n${dateText}\n\n<span class="sober-link">sobriety</span>\n<span style="line-height: 0.2;"><span class="sober-link">consecutive days sober: <span style="color: ${soberColor}">${soberDays}</span></span></span>${goalsText}`;
+            // TEMPORARILY HIDING DATE, SOBRIETY, AND GOALS SECTIONS
+            // Original: fullText = `hey i'm sam and i'm building the future i want to see. you can email me at sam@artoflifeproject.co\n\n${dateText}\n\n<span class="sober-link">sobriety</span>\n<span style="line-height: 0.2;"><span class="sober-link">consecutive days sober: <span style="color: ${soberColor}">${soberDays}</span></span></span>${goalsText}`;
+            fullText = `hey i'm sam and i'm building the future i want to see. you can email me at sam@artoflifeproject.co`;
             
             // Start typing after text is loaded
             setTimeout(typeWriter, 500);
