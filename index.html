@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>artoflifeproject.co</title>
     <style>
-        * {bk
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -79,6 +79,25 @@
             opacity: 0.8;
         }
 
+        .day-counter {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 4rem;
+            font-weight: 300;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in;
+        }
+
+        .day-counter.visible {
+            display: block;
+            opacity: 1;
+        }
+
         @media (max-width: 600px) {
             body {
                 font-size: 1rem;
@@ -87,12 +106,16 @@
                 padding: 20px;
                 margin: 10px;
             }
+            .day-counter {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div id="typewriter"></div>
+        <div id="dayCounter" class="day-counter"></div>
     </div>
 
     <div id="soberModal" class="modal">
@@ -119,6 +142,30 @@
             else if (days <= 90) return '#0070dd'; // Rare (Blue)
             else if (days <= 364) return '#a335ee'; // Epic (Purple)
             else return '#ff8000'; // Legendary (Orange) - 1 year+
+        }
+        
+        // Get color for day counter
+        function getDayCounterColor(days) {
+            if (days === 0) return '#9d9d9d';      // Gray
+            else if (days <= 6) return '#ffffff';   // White
+            else if (days <= 29) return '#1eff00';  // Green
+            else if (days <= 89) return '#0070dd';  // Blue (30-89)
+            else if (days <= 364) return '#a335ee'; // Purple
+            else return '#ff8000';                  // Orange
+        }
+        
+        // Calculate days since September 26, 2025
+        function getDaysSinceSeptember26() {
+            const now = new Date();
+            const easternTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
+            const targetDate = new Date(2025, 8, 26); // September 26, 2025 (month is 0-indexed)
+            
+            // Calculate difference in days
+            const diffTime = easternTime - targetDate;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            
+            // Return 0 if date hasn't passed yet
+            return Math.max(0, diffDays);
         }
         
         // Get current date in Eastern Time
@@ -253,6 +300,15 @@
                         document.getElementById('soberModal').style.display = 'flex';
                     });
                 });
+                
+                // Show day counter after typing completes
+                const dayCounter = document.getElementById('dayCounter');
+                const daysSince = getDaysSinceSeptember26();
+                const dayColor = getDayCounterColor(daysSince);
+                
+                dayCounter.textContent = daysSince;
+                dayCounter.style.color = dayColor;
+                dayCounter.classList.add('visible');
             }
         }
 
