@@ -154,11 +154,11 @@
             else return '#ff8000';                  // Orange
         }
         
-        // Calculate days since September 26, 2025
+        // Calculate days since October 1, 2025
         function getDaysSinceSeptember26() {
             const now = new Date();
             const easternTime = new Date(now.toLocaleString("en-US", {timeZone: "America/New_York"}));
-            const targetDate = new Date(2025, 8, 26); // September 26, 2025 (month is 0-indexed)
+            const targetDate = new Date(2025, 9, 1); // October 1, 2025 (month is 0-indexed, so 9 = October)
             
             // Calculate difference in days
             const diffTime = easternTime - targetDate;
